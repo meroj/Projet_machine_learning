@@ -1,7 +1,7 @@
 # Projet_machine_learning
 
 ## Notebook
-The notebook is used to do all the IA of the project
+Python is used to import the data, clean it, and build a model with the cleaned dataset
 
   ### Import
   ### Cleaning
