@@ -77,25 +77,4 @@ print("Value to predict is ",y[index_to_predict])
 
 print(reg.predict(np.array(X.iloc[index_to_predict]).reshape(1,-1))[0])
 
-#--------------------------------------------------
-print("CLF---------------------")
-
-print(X.shape)
-print(y.shape)
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=48)
-print("train set shape: ", X_train.shape, y_train.shape)
-print("test set shape: ", X_test.shape, y_test.shape)
-
-clf = LogisticRegression(max_iter=3000) 
-clf.fit(X_train, y_train)
-train_score = clf.score(X_train, y_train)
-test_score = clf.score(X_test, y_test)
-print ('train accuracy =', train_score)
-print ('test accuracy =', test_score)
-
-index_to_predict = 100
-print("Value to predict is ",y[index_to_predict])
-
-print(clf.predict(np.array(X.iloc[index_to_predict]).reshape(1,-1))[0])
-
 
