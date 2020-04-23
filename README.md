@@ -17,3 +17,5 @@ Python is used to import data, clean it, and build a model with cleaned dataset.
   
   ### Building
   Use the cleaned data and try to find a model with regression
+  
+  ## Article
