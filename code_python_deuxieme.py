@@ -4,18 +4,9 @@ import matplotlib.pyplot as plt
 import os
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
-from google.colab import drive
+from sklearn.linear_model import LogisticRegression
 
-
-%matplotlib inline
-
-
-
-drive.mount('/content/drive', force_remount=False)
-os.chdir("/content/drive/My Drive/ECE/Machine Learning/Colab/projetML") # steph
-
-!ls
-
+#-----------------------------------------------------
 df1 = pd.read_csv('diet.csv', index_col=0)
 df2 = pd.read_csv('examination.csv', index_col=0)
 
@@ -54,36 +45,25 @@ print(df2.shape)
 
 #Rename columns
 df1.rename(columns={"SEQN" : "id", "DBD100" : "salt", "DR1TKCAL" : "calories" , "DR1TALCO" : "alcohol" }, inplace=True)
-# df .rename(columns={"A": "a", "B": "c"})
-
 df1.head(10)
 
 #Rename columns
-#COUNT des dents si possible
-
 df2.rename(columns={"SEQN" : "id", "BMXWT" : "weight", "BMXHT" : "height" , "BMXBMI" : "mass_index", "OHDDESTS" : "dentition", "CSXEXSTS" : "smell_taste_perf", "CSQ241" : "pregnant_breastfeed"}, inplace=True)
-# df .rename(columns={"A": "a", "B": "c"})
-
 df2.head(10)
 
 #------------------------------------------------------------------------------------------
 
 #Merge frame
-
 frames = [df1, df2]
-
 df = pd.concat(frames, axis=1, join='inner', ignore_index=False)
-
 df.shape
 df_save = df.copy()
 
-
 #ROLLBACK
-
-
 df = df_save.copy()
 df.head(3)
 
+#----------------------------------------------------
 
 #Remplir les valeurs manquantes
 
@@ -121,8 +101,6 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_
 print("train set shape: ", X_train.shape, y_train.shape)
 print("test set shape: ", X_test.shape, y_test.shape)
 
-
-
 reg = LinearRegression()
 reg.fit(X_train, y_train)
 train_score = reg.score(X_train, y_train)
@@ -133,5 +111,4 @@ print  ('test score = {}'.format(test_score))
 
 index_to_predict = 1000
 print("Value to predict is ",y[73557+index_to_predict])
-
 print(reg.predict(np.array(X.iloc[index_to_predict]).reshape(1,-1))[0])
